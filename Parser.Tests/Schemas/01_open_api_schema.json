@@ -1,0 +1,193 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "TestApi",
+    "version": "1.0"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "StringTestModel": {
+        "required": [
+          "requiredProp"
+        ],
+        "type": "object",
+        "properties": {
+          "prop1": {
+            "type": "string",
+            "nullable": true
+          },
+          "prop2": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 3,
+            "format": "format-value",
+            "pattern": "^.*$",
+            "nullable": true
+          },
+          "requiredProp": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NumbersTestModel": {
+        "type": "object",
+        "required": [
+          "int32prop"
+        ],
+        "properties": {
+          "nullableInt32prop": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "int32prop": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "int64prop": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1111,
+            "maximum": 2000
+          },
+          "doubleProp": {
+            "type": "number",
+            "format": "double",
+            "minimum": 1.1111,
+            "maximum": 20.1111
+          },
+          "floatProp": {
+            "type": "number",
+            "format": "float",
+            "minimum": 1.1,
+            "maximum": 20.1
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefPropertiesTestModel": {
+        "type": "object",
+        "properties": {
+          "someEnumProp": {
+            "$ref": "#/components/schemas/SomeEnum"
+          },
+          "otherEnumProp": {
+            "$ref": "#/components/schemas/OtherEnum"
+          },
+          "details": {
+            "$ref": "#/components/schemas/TestInnerModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CollectionsPropertiesModel": {
+        "type": "object",
+        "required": [
+          "requiredIntArr"
+        ],
+        "properties": {
+          "dictInt": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "dictStr": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "intArr": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "requiredIntArr": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "stringArr": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "listOfTestInnerModel": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestInnerModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BooleanPropertiesModel": {
+        "type": "object",
+        "properties": {
+          "boolProp": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DateTimePropertiesModel": {
+        "type": "object",
+        "properties": {
+          "dateTimeProp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SomeEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "OtherEnum": {
+        "enum": [
+          "ValOne",
+          "ValTwo",
+          "ValThree"
+        ],
+        "type": "string"
+      },
+      "TestInnerModel": {
+        "type": "object",
+        "properties": {
+          "intProp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "boolProp": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

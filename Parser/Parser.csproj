@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties swagger_1json__JsonSchema="https://json.schemastore.org/tsdrc" /></VisualStudio></ProjectExtensions>
+
+  <ItemGroup>
+    <None Update="open_api_schema.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="swagger.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\TypeDefinitions\Common\" />
+    <Folder Include="Templates\" />
+  </ItemGroup>
+
+  
+
+</Project>

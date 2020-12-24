@@ -1,0 +1,363 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "TestApi",
+    "version": "1.0"
+  },
+  "paths": {
+    "/Test/GetAction": {
+      "get": {
+        "tags": [
+          "Test"
+        ],
+        "parameters": [
+          {
+            "name": "RequestProperty",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "RequestProperty1",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinesError"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Test/PostAction": {
+      "post": {
+        "tags": [
+          "Test"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinesError"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BusinesError": {
+        "type": "object",
+        "properties": {
+          "sameText": {
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "sameText1": {
+            "minLength": 3,
+            "type": "string",
+            "nullable": true
+          },
+          "sameText2": {
+            "pattern": "^.*$",
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RequestModel": {
+        "type": "object",
+        "properties": {
+          "requestProperty": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requestProperty1": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SomeEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "OtherEnum": {
+        "enum": [
+          "ValOne",
+          "ValTwo",
+          "ValThree"
+        ],
+        "type": "string"
+      },
+      "Int32StringValueTuple": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TimeSpan": {
+        "type": "object",
+        "properties": {
+          "ticks": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "days": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "milliseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "seconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "totalDays": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalHours": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMilliseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMinutes": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalSeconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseNested": {
+        "type": "object",
+        "properties": {
+          "intProp": {
+            "maximum": 8,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "stringProp": {
+            "maxLength": 10,
+            "minLength": 4,
+            "type": "string",
+            "nullable": true
+          },
+          "longProp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "decimalProp": {
+            "type": "number",
+            "format": "double"
+          },
+          "floatProp": {
+            "type": "number",
+            "format": "float"
+          },
+          "shortProp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "byteProp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "charProp": {
+            "type": "string"
+          },
+          "timeSpanProp": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "dateTimeProp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "boolProp": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseDetails": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dictInt": {
+            "minLength": 5,
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "dictStr": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "intArr": {
+            "minItems": 6,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "stringArr": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "tupleProp": {
+            "$ref": "#/components/schemas/Int32StringValueTuple"
+          },
+          "listOfResponseNested": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResponseNested"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseModel": {
+        "required": [
+          "responseProperty1"
+        ],
+        "type": "object",
+        "properties": {
+          "responseProperty": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "responseProperty1": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "format": "tel",
+            "nullable": true
+          },
+          "doubleProp": {
+            "maximum": 23.3,
+            "minimum": 1.2,
+            "type": "number",
+            "format": "double"
+          },
+          "dateTimeProp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "someEnumProp": {
+            "$ref": "#/components/schemas/SomeEnum"
+          },
+          "otherEnumProp": {
+            "$ref": "#/components/schemas/OtherEnum"
+          },
+          "details": {
+            "$ref": "#/components/schemas/ResponseDetails"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
